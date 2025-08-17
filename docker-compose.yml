@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  mane-haghighi-front:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    volumes:
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    networks:
+      - mane-network
+
+networks:
+  mane-network:
+    driver: bridge
